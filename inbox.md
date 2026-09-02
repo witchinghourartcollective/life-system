@@ -6,9 +6,13 @@ Quick capture. Process later.
 
 ## To Do
 
-- [x] Generate a burner wallet — done once, in one session's ephemeral container (address noted, key never committed) — see [[onechain-skills-suite]]
-- [ ] Export/back up that burner wallet key before its container is reclaimed, if you want it to persist — see [[onechain-skills-suite]]
-- [ ] Ask to-nexus about `skill-cross-stake` — the repo now 404s to an anonymous fetch in both sessions, so this isn't a sandbox issue, it's a dead/private repo — see [[onechain-skills-suite]]
+- [x] Document the nine installed ONEchain skills and correct the signing count — see [[onechain-skills-suite]]
+- [x] Define the managed-signer target with Trust Wallet as human owner — see [[onechain-wiring]]
+- [ ] Ask to-nexus whether `skill-cross-stake` was renamed, removed, or made private
+- [ ] Verify official CROSS network and WalletConnect parameters
+- [ ] Select a CROSS-compatible smart-account and managed-signer provider
+- [ ] Pilot the signer adapter in one transaction skill with negligible funds
+- [ ] Add CI secret scanning and tests that reject committed `.env` files
 
 ## Someday / Not Now
 
