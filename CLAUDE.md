@@ -129,9 +129,10 @@ workspace/repos.tsv                        # the manifest
 ```
 
 **Never clone `fletchervaughn-workspace`.** It is a versioned home directory,
-over 100 GB, and it contains SSH private keys, `.git-credentials`, `.gnupg`,
-env files and wallet backups. Read individual files from it through the GitHub
-API when needed. See [[workspace-hosting]] for why, and for what to do instead.
+over 100 GB. Its credential and wallet material is git-crypt encrypted at rest,
+so the reason to stay away is the size, not exposure. Read individual files
+from it through the GitHub API when needed. See [[workspace-hosting]] for why,
+and for what to do instead.
 
 ### Wallet and transaction safety
 

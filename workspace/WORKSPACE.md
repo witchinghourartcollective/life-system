@@ -27,12 +27,20 @@ Two consequences worth keeping in mind:
 - **Do not clone it.** Not into a cloud session, not onto a metered
   connection. Read individual files through the GitHub API when something in
   it is genuinely needed.
-- **It contains credentials.** Eight SSH private keys under `.ssh/`
-  (including `id_rsa_github` and three signing keys), `.git-credentials`,
-  `.gnupg/`, `.env`, `.env.local`, several `.pem` private keys, a TON
-  keystore, wallet backup archives, and a `SENSITIVE-CREDENTIALS-INVENTORY.md`.
-  Treat every one of those as exposed and rotate them. Moving the repo to
-  another host copies the credentials to that host too.
+- **Its sensitive files are git-crypt encrypted.** `.gitattributes` puts
+  `.ssh/**`, `.gnupg/**`, `.git-credentials`, `.env`, `.env.local`,
+  `**/*.pem`, `.lnd/**`, the TON keystore, the wallet backup archives and
+  `SENSITIVE-CREDENTIALS-INVENTORY.md` through the git-crypt filter, plus
+  filename backstops for `**/wallet.db`, `**/channel.backup`, `**/*.macaroon`,
+  `**/*seed*.txt`, `**/*xprv*` and similar. Spot-checking `.lnd/lnd.conf`
+  through the API returns a GITCRYPT header rather than plaintext, so the
+  filter is active and not merely configured.
+
+  Two things this does not do, worth remembering rather than acting on:
+  git-crypt encrypts file contents, not paths or sizes, so the tree itself
+  still describes what exists and where; and the protection lasts exactly as
+  long as the git-crypt key stays out of the repo and off shared hosts.
+  Mirroring the repo somewhere the key also ends up removes the protection.
 
 ## Repository map
 
