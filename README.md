@@ -146,6 +146,15 @@ Everything is a starting point. Delete what doesn't resonate, add what does:
 - Have a different morning routine? Update `reference/habits.md`.
 - The CLAUDE.md philosophy section is where you define the relationship. Make it yours.
 
+## ONEchain/CROSS Skills
+
+This repository also tracks the bootstrap and planned wallet integration for the ONEchain skills suite:
+
+- [Skills status and bootstrap](research/onechain-skills-suite.md) — summarizes the nine installed skills and the unavailable `skill-cross-stake` repository.
+- [Wallet and skill wiring](research/onechain-wiring.md) — defines a phone-controlled, managed-signer design that avoids sharing raw private keys.
+
+The current transaction skills expect a local `PRIVATE_KEY`. Do not use a personal or treasury wallet key. Read-only skills can be used without signing, while transaction skills need the documented signer adapter before the managed-signer design is complete.
+
 ## Optional: QMD for Search
 
 Once you accumulate journal entries, decision docs, and notes, you'll want to search across them without manually reading dozens of files. [QMD](https://github.com/tobi/qmd) is a local CLI search engine for markdown files that supports keyword search (BM25), semantic/vector search, and hybrid queries with reranking.
