@@ -115,6 +115,34 @@ Rationale: Rebase rewrites history and can silently drop commits when interrupte
 
 ---
 
+## Multi-Repo Workspace
+
+The code working set is thirteen repositories cloned side by side, mapped in
+[`workspace/WORKSPACE.md`](workspace/WORKSPACE.md). That file replaces the
+root guidance that used to live in the `fletchervaughn-workspace` repo and
+carries the cross-project conventions and the wallet safety rules.
+
+```
+workspace/bootstrap.sh                     # clone the set into ~/work
+workspace/bootstrap.sh --cluster lightning # just the Lightning repos
+workspace/repos.tsv                        # the manifest
+```
+
+**Never clone `fletchervaughn-workspace`.** It is a versioned home directory,
+over 100 GB, and it contains SSH private keys, `.git-credentials`, `.gnupg`,
+env files and wallet backups. Read individual files from it through the GitHub
+API when needed. See [[workspace-hosting]] for why, and for what to do instead.
+
+### Wallet and transaction safety
+
+Only execute a transaction, channel open or close, on-chain send, or any other
+fund-moving action when told to do that specific action. A prior general
+go-ahead does not carry to a new amount, peer, destination, or session. Never
+change an amount, fee rate, peer, destination, or channel size from what was
+specified. Read-only diagnostics are exempt.
+
+---
+
 ## Code Projects
 
 <!-- Add your own projects here -->
