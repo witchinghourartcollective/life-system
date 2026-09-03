@@ -60,13 +60,17 @@ The first session guessed this was a sandbox-side block, since the other 9 `skil
 - Address: `0x034E8911aa8433A41e471B3b672196544cCAd35F`
 - Generated in one session's container via `viem`'s `generatePrivateKey()`; the private key was written straight to that container's skill `.env` files and never printed to chat or committed to git.
 - Wired into (in that container only): `cross-dex-trade`, `cross-prediction`, `cross-crossd`, `cross-rewards`, `cross-nft`, `cross-forge`, `cross-wave`.
-- **Unfunded.** Treat as fully disposable even once funded — send only small test amounts of CROSS.
-- **Ephemeral and single-container.** The key lives only in that one remote container's local filesystem (`~/cross-skills/*/skills/*/.env`), which does not persist across sessions and is not shared with any other session (this doc's second-session author's own container still has only placeholder keys — see Summary). If that container is reclaimed without the key being exported elsewhere first, this wallet (and anything ever sent to it) is unrecoverable. The address is safe to keep here for reference; the key itself is deliberately never in this repo.
+- **Exported.** Imported into Trust Wallet (2026-09-02) — the key now has a durable copy outside the ephemeral container, so it's no longer at risk of total loss if that container gets reclaimed.
+- **Still also live in that container's 6 `.env` files** (`cross-dex-trade`, `cross-prediction`, `cross-crossd`, `cross-rewards`, `cross-nft`, `cross-forge`), unless that session/container has since been cleaned up. Funding this address gives every one of those pieces of third-party automation equal signing authority over whatever's sent here — that's the intended use (testing the skills), just stated plainly.
+- **Funded with a few dollars of CROSS**, on purpose, sized for testing. Treat it as fully disposable regardless of balance — never grow it into anything beyond pocket-change test money.
+- **Before funding further (or at all, if not done yet): set per-skill caps.** Each `.env` has `MAX_TRADE_*` / `MAX_STAKE_NOTIONAL` / `MAX_BRIDGE_NOTIONAL` and `CONFIRM_THRESHOLD` vars — set them at or below the funded amount so no single automated call can move more than intended. Defaults (e.g. `MAX_TRADE_CROSS=10`) may exceed a "few dollars" funding level.
 
 ## Open Questions
 
-- [x] ~~Generate a burner EOA wallet~~ — done once, in one session's container (address above). **Still open:** that key needs to be exported out of that container (to a wallet app, or by pasting it — locally, never through Claude — into a password manager) before the container is reclaimed, or it and anything sent to it is gone for good.
-- [ ] Do **not** ask a Claude Code session to generate another one "to be safe," push a key to git (encrypted or not — encryption doesn't make a leaked key safe; the risk is the key ever leaving your own device), or route a funded key through unaudited third-party trading/DeFi automation ("transfer large amount out" was explicitly asked for and declined in the second session). If you need the key to survive across sessions, generate it yourself outside any Claude Code session (a wallet app, or `openssl rand -hex 32` in a terminal you control) and paste only the resulting value into each skill's `.env` yourself.
+- [x] ~~Generate a burner EOA wallet~~ — done, address above.
+- [x] ~~Export the key before the container is reclaimed~~ — done, imported into Trust Wallet.
+- [ ] Set `MAX_TRADE_*` / `CONFIRM_THRESHOLD` caps in each `.env` to match the actual funded amount, before (or right after) funding.
+- [ ] Do **not** ask a Claude Code session to generate another one "to be safe," push a key to git (encrypted or not — encryption doesn't make a leaked key safe; the risk is the key ever leaving your own device), or route a funded key through unaudited third-party trading/DeFi automation beyond small test amounts. If a fresh key is ever needed, generate it yourself outside any Claude Code session and paste only the resulting value into each skill's `.env` yourself.
 - [ ] `skill-cross-stake`: confirm with to-nexus whether the repo was renamed/moved/made private, or ping them about the dead link.
 
 ## Sources
