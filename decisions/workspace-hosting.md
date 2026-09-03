@@ -34,7 +34,7 @@ directory under version control. Any host would be asked to store the same
 ## What I'm Optimizing For
 
 1. Not moving 100 GB over a metered connection.
-2. Getting the credentials out of a git repository.
+2. Keeping the git-crypt key off any host that holds the repository.
 3. Not rewriting anything that already works.
 
 ## Decision
@@ -55,27 +55,41 @@ Split by what the data is, rather than picking one host for all of it.
   second node is a checkout and one install command rather than a home
   directory copy.
 - **`fletchervaughn-workspace` → stop pushing to it, then archive it.** Do
-  not migrate it anywhere. Migrating copies the credentials to a second host.
+  not migrate it anywhere. The objection is the 100 GB and the risk of the
+  git-crypt key following the repo to a new host, not the ciphertext itself.
 
 Cloudflare stays worth using for what it is already good at here: the app
 front ends. `witching-hour-app` has a `deploy:cloudflare` script.
 
-## Before anything else
+## Correction: the credentials are encrypted
 
-The repository contains, committed and readable by anyone with access:
+An earlier version of this document said the workspace repo carried eight SSH
+private keys, `.git-credentials`, `.gnupg`, env files, PEM keys, a TON keystore
+and wallet backups in the clear, and that all of it needed rotating. That was
+wrong, and the error was mine: I read a directory listing and treated the
+filenames as exposed secrets without checking the contents.
 
-- Eight SSH private keys under `.ssh/`, including `id_rsa_github` and three
-  signing keys
-- `.git-credentials`
-- `.gnupg/`, `.env`, `.env.local`
-- `private.pem`, `ca-key.pem`, `server-key.pem`, `cert_key.pem`
-- A TON keystore and wallet backup archives
-- `SENSITIVE-CREDENTIALS-INVENTORY.md`
+They are git-crypt encrypted. `.gitattributes` routes `.ssh/**`, `.gnupg/**`,
+`.git-credentials`, `.env`, `.env.local`, `**/*.pem`, `.lnd/**`, the keystore,
+the wallet backup archives and the credentials inventory through the filter,
+with filename backstops for `**/wallet.db`, `**/channel.backup`,
+`**/*.macaroon`, `**/*seed*.txt` and `**/*xprv*`. Fetching `.lnd/lnd.conf`
+returns a GITCRYPT header, confirming the filter runs rather than just being
+declared. No rotation is required on account of this repository.
 
-Rotate all of it. Deleting the files does not help on its own, because the
-history still holds them. Rotation is the fix; archiving the repo afterwards
-is cleanup.
+Two limits are still worth knowing, as facts rather than actions:
+
+- git-crypt encrypts contents, not paths or sizes. The tree still shows what
+  exists and roughly how big it is.
+- The protection holds only while the git-crypt key stays out of the repo and
+  off shared machines. This is the real argument against mirroring the repo to
+  another host: not the ciphertext, but the chance of the key following it.
+
+`.gitattributes` also notes that `Documents/wallet*stuff/**` "was committed
+unencrypted — see incident note" before being added to the filter. That is a
+known, separately handled incident, not an open finding from this document.
 
 ## Review Date
 
-Once the credentials are rotated.
+When the large blobs are actually moved out of the workspace repo, or when
+the repo is archived, whichever comes first.
