@@ -1,0 +1,17 @@
+# The repositories that make up the working set, replacing the
+# fletchervaughn-workspace home-directory repo.
+#
+# name	owner	default_branch	cluster	notes
+Witching-hOUR-Live-App	Witching-Hour-Music	master	app	Live desktop experience
+access-tool	Witching-Hour-Music	main	lightning	Docker-compose access tool, backend and frontend
+agentic-wallet-policy	Witching-Hour-Music	main	wallet	Rules-based agentic wallet policy and validator
+ecosystem	Witching-Hour-Music	main	support	Python package, docs and tests
+finance	Witching-Hour-Music	finish-wallet-recovery	finance	Beancount ledger; validate with bean-check main.bean
+life-system	witchinghourartcollective	main	hub	Personal system, journal, and this workspace manifest
+lightning-kmp	witchinghourartcollective	master	lightning	Kotlin Multiplatform Lightning implementation
+lnc-web	witchinghourartcollective	main	lightning	Lightning Node Connect for the browser
+lnd-ops-subrepo	Witching-Hour-Music	master	lightning	LND ops scripts and systemd units for both nodes
+mirrorz	Witching-Hour-Music	main	app	Empty, initial commit only
+phigit-os-v2-handoff	witchinghourartcollective	agent/phigit-os-v2-handoff	support	Handoff notes
+phoenix	witchinghourartcollective	master	lightning	Phoenix wallet, Android and iOS
+witching-hour-app	Witching-Hour-Music	main	app	Next.js app with onchain hooks

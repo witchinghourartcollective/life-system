@@ -13,6 +13,13 @@ Quick capture. Process later.
 - [ ] Structural fix for `~/.git` bloat: filter-repo old encrypted DB-blob history, or stop versioning live `.lnd/.lit` DBs in the backup repo
 - [ ] whm-onchain-agent has no dry powder (USDC ~$0 Base / $1 Polygon / $0 BNB, positions all underwater). Decide: fund with USDC + ~$5–10 ETH on Base for gas, OR authorize realizing losses on the stuck positions, OR leave it holding. Trader is running and RPC is fixed — just needs capital.
 - [ ] Consider turning on `MARKET_REGIME_ENTRY_GATE_ENABLED=true` for whm-onchain-agent once funded (pauses new buys in a BEAR macro regime; `npm run trade:regime` shows current read — TRANSITION as of 08-28)
+- [x] Document the nine installed ONEchain skills and correct the signing count — see [[onechain-skills-suite]]
+- [x] Define the managed-signer target with Trust Wallet as human owner — see [[onechain-wiring]]
+- [ ] Ask to-nexus whether `skill-cross-stake` was renamed, removed, or made private
+- [ ] Verify official CROSS network and WalletConnect parameters
+- [ ] Select a CROSS-compatible smart-account and managed-signer provider
+- [ ] Pilot the signer adapter in one transaction skill with negligible funds
+- [ ] Add CI secret scanning and tests that reject committed `.env` files
 
 ## Someday / Not Now
 
