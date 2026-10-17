@@ -44,3 +44,9 @@ Quick capture. Process later.
 - [ ] Prep for Chainlink meeting Mon 10-05 11:30 (goal, asks, demo)
 - [ ] Run gateway:send 0.01 4817→4817 once the 0.02 Gateway deposit is credited (`npm run -s gateway:balances`) — 2026-10-03
 - [ ] Open the GitLab MR for witching-hour-app `a2a-agent-card` — 2026-10-03
+- [ ] GoBTC Pay: in merchant.gobtcpay.com check which receiving wallet is linked. If you want checkout payouts beside your GoMining GoBTC Pay wallet, re-link via Receiving Wallet → Start wallet link and scan with the GoMining app. Ask GoMining support whether the merchant account can be tied to the GoMining account. (2026-10-06)
+- [ ] GoBTC Pay: replace the placeholder $5/$20/$50 "Support" items in src/lib/gobtcpay.ts with real offerings (2026-10-06)
+- [ ] witchinghourmac.com: purge the CF cache (dashboard → Caching → Purge Everything) so Google sees the new SEO homepage; the edge Cache Rule is still serving the old HTML. Or create a token with Zone → Cache Purge (2026-10-07)
+- [ ] Google Search Console: add witchinghourmac.com + mirrorizm.com as Domain properties, hand over the TXT values for DNS, submit sitemaps, request indexing (2026-10-07)
+- [ ] Put witchinghourmac.com in IG/SoundCloud/Bandcamp/YouTube/Zora bios; send the profile URLs (incl. Spotify) for the structured-data sameAs (2026-10-07)
+- [ ] Mirrorizm SEO: approve the title/description reframed as visual art, fashion and street art (2026-10-07)
