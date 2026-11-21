@@ -36,7 +36,9 @@ Quick capture. Process later.
 
 - [ ] whm-flywheel: route a share of take-profit ETH into auto-compounding yield (Aave v3 / Moonwell / Morpho on Base — pick highest rate at the time; aTokens accrue every ~2s block). Revisit once profits are flowing. (2026-09-25)
 - [ ] 09-30: WHM-LND: any forward OUT via Naghust, or any successful refill at 1000ppm? If neither, turn the rebalancer off. It is not doing anything
-- [ ] Send GCUL onboarding email (draft: ~/cre-project/gcul/onboarding-email.md): fill in Org ID + new project ID first
+- [x] Send GCUL onboarding email (sent 2026-10-06)
+- [ ] GCUL: create KMS key, paste PEM into mirrorz@ draft reply to Moritz Platt, send. Status: [[gcul-onboarding]]
+- [ ] Add a claude.ai connector for the witchinghourmac.com mailboxes so cloud sessions can read them
 - [x] Deploy CoinCircuitBreaker on Base: 0xBFeDCca4dE6cF908C1cf375D430DaDDc15C9bdca (10-02)
 - [ ] Review/merge whm-flywheel PR #1, build+import new image, bump tag in whm-infra PR #1, merge
 - [ ] When CRE deploy access is approved: `cre account link-key`, setExpectedAuthor on the breaker, `cre workflow deploy coin-breaker --target production-settings`
